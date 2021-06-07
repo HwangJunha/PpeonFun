@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+  <mapper namespace="ppeonfun.dao.admin.report.ReportDao">
+  	<resultMap type="ppeonfun.dto.Report" id="Report">
+  		<result column="rep_no" property="repNo"/>
+		<result column="p_no" property="pNo" />
+  		<result column="m_reporter_no" property="mReporterNo"/>
+		<result column="m_founder_no" property="mFounderNo" />
+		<result column="rep_content" property="repContent" />
+		<result column="rep_create_date" property="repCreateDate" />
+		<result column="rep_manager_content" property="repManagerContent" />
+		<result column="rep_state" property="repState" />
+  	</resultMap>
+
+  	<resultMap type="ppeonfun.dto.Information" id="Information">
+  		<result column="i_no" property="iNo"/>
+		<result column="p_no" property="pNo"/>
+		<result column="i_title" property="iTitle"/>
+		<result column="i_money" property="iMoney"/>
+		<result column="i_origin_name" property="iOriginName"/>
+		<result column="i_stored_name" property="iStoredName"/>
+		<result column="i_category" property="iCategory"/>
+		<result column="i_start_date" property="iStartDate"/>
+		<result column="i_end_date" property="iEndDate"/>
+		<result column="i_create_date" property="iCreateDate"/>
+		<result column="i_state" property="iState"/>
+		<result column="i_size" property="iSize"/>
+		<result column="i_content_type" property="iContentType"/>
+  	</resultMap>
+  	
+ 	<resultMap type="ppeonfun.dto.Member" id="Member">
+  		<result column="m_no" property="mNo"/>
+		<result column="m_id" property="mId"/>
+		<result column="m_password" property="mPassword"/>
+		<result column="m_name" property="mName"/>
+		<result column="m_phone" property="mPhone"/>
+		<result column="m_email" property="mEmail"/>
+		<result column="m_nick" property="mNick"/>
+		<result column="m_gender" property="mGender"/>
+		<result column="m_birth" property="mBirth"/>
+		<result column="m_signup" property="mSignup"/>
+		<result column="m_bank" property="mBank"/>
+		<result column="m_account" property="mAccount"/>
+		<result column="m_caution" property="mCaution"/>
+		<result column="m_grade" property="mGrade"/>
+		<result column="m_post" property="mPost"/>
+		<result column="m_address" property="mAddress"/>
+		<result column="m_detail_address" property="mDetailAddress"/>
+		<result column="m_delete_state" property="mDeleteState"/>
+		<result column="m_social" property="mSocial"/>
+  	</resultMap>
+  	
+  	<resultMap type="ppeonfun.dto.Project" id="Project">
+  		<result column="p_no" property="pNo"/>
+		<result column="m_no" property="mNo" />
+		<result column="p_name" property="pName" />
+		<result column="p_requirements" property="pRequirements" />
+		<result column="p_information" property="pInformation" />
+		<result column="p_story" property="pStory" />
+		<result column="p_reward" property="pReward" />
+		<result column="p_maker" property="pMaker" />
+		<result column="p_state" property="pState" />
+		<result column="p_progress_state" property="pProgressState" />
+		<result column="p_caution" property="pCaution" />
+		<result column="p_like" property="pLike" />
+		<result column="p_create_date" property="pCreateDate" />
+  	</resultMap>  	
+  	  	
+  	<select id="selectCntAll" resultType="int">
+  		SELECT count(*) FROM project
+  	</select>
+ 
+ 
+   	<select id="selectAllReport" resultMap="Report">
+  		SELECT * from report
+  	</select>
+  	 	
+   	<select id="selectAllInformation" resultMap="Information">
+  		SELECT * from information
+  	</select>
+  	 	
+   	<select id="selectAllMember" resultMap="Member">
+  		SELECT * from member
+  	</select>
+
+   	<select id="selectAllProject" resultMap="Project">
+  		SELECT * from project
+  	</select>
+  	  	
+  	<insert id="insertReport" parameterType="ppeonfun.dto.Report">
+  		insert into report(rep_no,p_no,m_reporter_no,m_founder_no,rep_content,rep_manager_content,rep_state) 
+  		values(report_SEQ.nextval, #{pNo}, #{mReporterNo}, #{mFounderNo}, #{repContent}, #{repManagerContent}, #{repState})
+  	</insert>
+  	 	
+   	<delete id="deleteByNum" parameterType="int">
+  		delete from report where rep_no = #{rep_no}
+  	</delete>  
+  		
+   	<update id="approveByNum" parameterType="int">
+   		update report set rep_state='Y'
+   		where rep_no = #{rep_no}
+  	</update>  	
+  	
+   	<update id="rejectByNum" parameterType="int">
+   		update report set rep_state='N'
+   		where rep_no = #{rep_no}
+  	</update>
+  	
+  </mapper>
