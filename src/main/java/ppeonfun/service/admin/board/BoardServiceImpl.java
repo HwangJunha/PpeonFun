@@ -180,6 +180,7 @@ public class BoardServiceImpl implements BoardService{
 	public void updateBoardAndFiles(Board board, List<MultipartFile> flist) {
 		//글 수정 메소드 호출
 		boardDao.updateBoard(board);
+		boardDao.deleteBoardFiles(board);
 		
 		String storedPath = context.getRealPath("resources/upload");
 		
@@ -194,7 +195,6 @@ public class BoardServiceImpl implements BoardService{
 				return;
 			}
 
-			boardDao.deleteBoardFiles(board);
 				
 			String filename = file.getOriginalFilename();
 				
