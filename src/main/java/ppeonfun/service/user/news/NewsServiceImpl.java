@@ -1,5 +1,6 @@
 package ppeonfun.service.user.news;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,9 +12,9 @@ import ppeonfun.dao.user.news.NewsDao;
 import ppeonfun.dto.Favorite;
 import ppeonfun.dto.Information;
 import ppeonfun.dto.News;
+import ppeonfun.dto.NewsSort;
 import ppeonfun.dto.Supporter;
 import ppeonfun.dto.SupporterJoin;
-import ppeonfun.util.Paging;
 import ppeonfun.util.ProjectPaging;
 
 @Service("user.NewsService")
@@ -31,7 +32,18 @@ public class NewsServiceImpl implements NewsService {
 	
 	@Override
 	public int totalCount(Supporter supporter) {
-		return newsDao.selectCntSupporter(supporter);
+		
+		String count = newsDao.selectCntSupporter(supporter);
+		int totalcnt = 0;
+		
+		if(count == null || count.equals("")) {
+			return totalcnt;
+			
+		} else {
+			totalcnt = Integer.parseInt(count);
+			
+			return totalcnt;
+		}
 	}
 	
 	@Override
@@ -41,12 +53,28 @@ public class NewsServiceImpl implements NewsService {
 	
 	@Override
 	public int amount(SupporterJoin suJoin) {
-		return newsDao.selectTotalAmount(suJoin);
+		
+		String money = newsDao.selectTotalAmount(suJoin);
+		int amount = 0;
+		
+		if(money == null || money.equals("")) {
+			return amount;
+			
+		} else {
+			amount = Integer.parseInt(money);
+			
+			return amount;
+		}
 	}
 	
+//	@Override
+//	public List<News> getList(News news) {
+//		return newsDao.selectList(news);
+//	}
+	
 	@Override
-	public List<News> getList(News news) {
-		return newsDao.selectList(news);
+	public List<NewsSort> getList(NewsSort newsSort) {
+		return newsDao.selectList(newsSort);
 	}
 	
 	@Override
@@ -87,6 +115,22 @@ public class NewsServiceImpl implements NewsService {
 	}
 	
 	@Override
+	public int communityCnt(News news) {
+		
+		String comCnt = newsDao.selectCntCommunity(news);
+		int comCount = 0;
+		
+		if(comCnt == null || comCnt.equals("")) {
+			return comCount;
+			
+		} else {
+			comCount = Integer.parseInt(comCnt);
+			
+			return comCount;
+		}
+	}
+	
+	@Override
 	public int getTotalCntFavorite(Favorite favorite) {
 		return newsDao.getTotalCntFavorite(favorite);
 	}
@@ -95,7 +139,7 @@ public class NewsServiceImpl implements NewsService {
 //	public ProjectPaging getPaging(ProjectPaging inDate) {
 //		
 //		//총 게시글 수 조회
-//		int totalCount = newsDao.selectCntNews(inDate);
+//		int totalCount = newsDao.selectCntNewspaging(inDate);
 //		
 //		//페이징 계산
 //		ProjectPaging paging = new ProjectPaging(totalCount, inDate.getCurPage());

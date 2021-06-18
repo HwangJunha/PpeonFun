@@ -40,7 +40,7 @@
 		where p_no = #{pNo }	
 	</select>
 	
-	<select id="selectCntSupporter" parameterType="ppeonfun.dto.Supporter" resultType="int">
+	<select id="selectCntSupporter" parameterType="ppeonfun.dto.Supporter" resultType="String">
 		SELECT count(*)
 		FROM supporter
 		WHERE p_no = #{pNo }
@@ -53,17 +53,36 @@
 		where p_no = #{pNo }
 	</select>
 	
-	<select id="selectTotalAmount" parameterType="ppeonfun.dto.SupporterJoin" resultType="int">
+	<select id="selectTotalAmount" parameterType="ppeonfun.dto.SupporterJoin" resultType="String">
 		SELECT sum(re_money + su_add_money)
 		FROM reward r, supporter s
 		WHERE s.re_no = r.re_no and s.p_no = #{pNo }		
 	</select>
 	
-	<select id="selectList" parameterType="ppeonfun.dto.News" resultMap="News">
+<!-- 	<select id="selectList" parameterType="ppeonfun.dto.News" resultMap="News"> -->
+<!-- 		SELECT * FROM news -->
+<!-- 		WHERE p_no = #{pNo } -->
+<!-- 		ORDER BY n_no desc -->
+<!-- 	</select> -->
+	
+	<select id="selectList" parameterType="ppeonfun.dto.NewsSort" resultType="ppeonfun.dto.NewsSort">
 		SELECT * FROM news
 		WHERE p_no = #{pNo }
-		ORDER BY n_no desc
+		<if test='categorySort != null and !categorySort.equals("") and !categorySort.equals("전체")'>
+			AND n_category = #{categorySort }
+		</if>
+<!-- 		<if test='categorySort.equals("전체")'> -->
+<!-- 			AND p_no = #{pNo } -->
+<!-- 		</if> -->
+		ORDER BY
+		<if test='timeSort == null or timeSort.equals("") or timeSort.equals("최신순")'>
+			n_no desc
+		</if>
+		<if test='timeSort != null and !timeSort.equals("") and !timeSort.equals("최신순")'>
+			n_no asc
+		</if>
 	</select>
+
 	
 	<select id="selectByNno" parameterType="ppeonfun.dto.News" resultMap="News">
 		SELECT * FROM news
@@ -100,7 +119,13 @@
 		VALUES (favorite_seq.nextval, #{pNo }, #{mNo })
 	</insert>
 	
-<!-- 	<select id="selectCntNews" resultType="int" parameterType="ProjectPaging"> -->
+	<select id="selectCntCommunity" parameterType="ppeonfun.dto.News" resultType="String">
+		SELECT count(*) 
+		FROM community
+		where p_no = #{pNo }
+	</select>
+	
+<!-- 	<select id="selectCntNewspaging" resultType="int" parameterType="ppeonfun.util.ProjectPaging"> -->
 <!-- 		SELECT COUNT(*)  -->
 <!-- 		FROM news -->
 <!-- 		WHERE p_no = #{pNo } -->
