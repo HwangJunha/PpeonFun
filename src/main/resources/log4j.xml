@@ -12,8 +12,9 @@
 	
 	<!-- Application Loggers -->
 	<logger name="ppeonfun">
+		<level value="warn" />
 <!-- 		<level value="info" /> -->
-		<level value="debug" />
+<!-- 		<level value="debug" /> -->
 	</logger>
 	
 	<!-- 마이바티스 쿼리 Logger -->
@@ -27,13 +28,15 @@
 		<level value="warn"/>
 	</logger>
 	<logger name="jdbc.sqltiming">
-		<level value="info"/>
+<!-- 		<level value="info"/> -->
+		<level value="warn"/>
 	</logger>
 	<logger name="jdbc.resultset">
 		<level value="warn"/>
 	</logger>
 	<logger name="jdbc.resultsettable">
-		<level value="info"/>
+<!-- 		<level value="info"/> -->
+		<level value="warn"/>
 	</logger>
 	<logger name="org.mybatis">
 		<level value="warn"/>
@@ -41,19 +44,23 @@
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+<!-- 		<level value="info" /> -->
+		<level value="warn"/>
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+<!-- 		<level value="info" /> -->
+		<level value="warn"/>
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+<!-- 		<level value="info" /> -->
+		<level value="warn"/>
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+<!-- 		<level value="info" /> -->
+		<level value="warn"/>
 	</logger>
 
 	<!-- Root Logger -->
