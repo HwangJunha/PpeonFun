@@ -57,7 +57,7 @@ public class MypageServiceImpl implements MypageService {
 		
 		//기존 파일 삭제 후 또는 기본 이미지 파일일 때 updateMypageFile(mNo, file) 수행
 		File upfile = new File(storedPath);
-		if(!upfile.exists()) { upfile.mkdir(); }
+		if(!upfile.exists()) { upfile.mkdirs(); }
 		
 		//원본 파일명
 		String originName = file.getOriginalFilename();

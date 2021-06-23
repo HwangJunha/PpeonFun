@@ -2,6 +2,8 @@ package ppeonfun.controller.user.mypage;
 
 import java.io.IOException; 
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,9 +73,9 @@ public class MypageController {
 	}
 	
 	@RequestMapping(value="/profile/ajax", method=RequestMethod.POST)
-	public void updateProfileImg(HttpSession session
+	public String updateProfileImg(HttpSession session
 				, @RequestParam(value="file", required=true) MultipartFile file
-				, HttpServletResponse resp) {
+				, Model model) {
 		logger.info("***** /user/mypage/profile/ajaxSTART *****");
 		logger.info("파일 확인:{}", file);
 		logger.info("파일명:{}", file.getOriginalFilename());
@@ -84,34 +86,24 @@ public class MypageController {
 		//업데이트 된 mypage 테이블 조회
 		MyPage newImg = mypageService.getProfileImg((int) session.getAttribute("mNo"));
 		
-		//저장된 새 파일명 return
-		resp.setCharacterEncoding("UTF-8");
+		//저장된 새 파일명 세션 재등록
+		model.addAttribute("newImg", newImg.getMyStoredName());
+		session.setAttribute("myStoredName", newImg.getMyStoredName());
 		
-		try {
-			PrintWriter out = resp.getWriter();
-			Gson gson = new Gson();
-			out.print(gson.toJson(newImg));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		return "jsonView";
 	}
 	
 	@RequestMapping(value="/profile/delajax", method=RequestMethod.GET)
-	public void deleteProfileImg(HttpSession session, HttpServletResponse resp) {
+	public String deleteProfileImg(HttpSession session, Model model) {
 		logger.info("***** /user/mypage/profile/delajaxSTART *****");
 		mypageService.deleteProfileImg((int) session.getAttribute("mNo"));
 		
-		//저장된 새 파일명 return
+		//저장된 기본 파일명 return
 		MyPage newImg = mypageService.getProfileImg((int) session.getAttribute("mNo"));
-		resp.setCharacterEncoding("UTF-8");
+		session.setAttribute("myStoredName", newImg.getMyStoredName());
 		
-		try {
-			PrintWriter out = resp.getWriter();
-			Gson gson = new Gson();
-			out.print(gson.toJson(newImg));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		model.addAttribute("myStoredName", newImg.getMyStoredName());
+		return "jsonView";
 	}
 	
 	

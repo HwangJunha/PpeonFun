@@ -125,13 +125,13 @@ function changeImg(e) {
 		, processData : false
 	    , contentType : false
 	    , data : form
-		, dataType: "json" 
+	    , dataType : "json"
 		, success: function(res) {
 			console.log("ajax 성공")
-			console.log("파일명", res.myStoredName)
-			$("#myimg").attr( 'src', ('/upload/profile/' + res.myStoredName) )
+			console.log(res.newImg)
+			$("#myimg").attr('src', ('/upload/profile/' + res.newImg) )
 		}
-		, error: function(res) {
+		, error: function() {
 			console.log("ajax 실패")
 		}
 	})
