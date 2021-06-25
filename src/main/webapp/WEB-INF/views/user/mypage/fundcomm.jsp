@@ -13,9 +13,9 @@ table th, td {text-align:center;}
 #btnPjName {background:none; border:none;}
 
 /* 질문 내용 & 답변 */
-td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bottom:15px;}
+td[colspan='5'] div {width:35%; border-radius:5px; position:relative; margin-bottom:15px;}
 .divComContent {left:15%; text-align:left; border:2px solid #C4FFFF; background-color:#C4FFFF; }
-.divComAnswer {left:50%; text-align:right;}
+.divComAnswer {left:50%; text-align:left;}
 </style>
 
 <div class="container">
@@ -29,7 +29,7 @@ td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bot
 	<c:import url="/WEB-INF/views/layout/myCategoryBtn.jsp"/>
 	<c:if test="${empty fundCommList }">
 		<div class="text-center" style="height:210px; margin-top:100px;">
-			<h3>참여한 펀딩 프로젝트 커뮤니티에 작성한 글이 없습니다.</h3>
+			<h3>펀딩 프로젝트 커뮤니티에 작성한 글이 없습니다.</h3>
 		</div>
 	</c:if>
 	
@@ -37,6 +37,7 @@ td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bot
 		<table class="table table-hover" style="width:80%;margin:50px auto 0 auto;">
 			<tr>
 				<th style="width:10%">#</th>
+				<th style="width:10%">카테고리</th>
 				<th style="width:50%">프로젝트명</th>
 				<th style="width:10%">작성일</th>
 				<th style="width:10%">답변</th>
@@ -44,6 +45,7 @@ td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bot
 			<c:forEach var="fcList" items="${fundCommList }">
 			<tr>
 				<td>${fcList.RNUM }</td>
+				<td>${fcList.I_CATEGORY }</td>
 				<td><button type="button" id="btnPjName" onclick="getContent(${fcList.RNUM }, ${fcList.COM_NO})">${fcList.P_NAME }</button></td>
 				<td><fmt:formatDate value="${fcList.COM_DATE }" pattern="yyyy-MM-dd"/></td>
 				<td>
@@ -52,7 +54,7 @@ td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bot
 				</td>
 			</tr>
 			<tr>
-				<td id="td${fcList.RNUM }" colspan="3">
+				<td id="td${fcList.RNUM }" colspan="5">
 					<div class="divComContent">
 						<span>${fcList.COM_CONTENT }</span>
 					</div>
@@ -72,7 +74,7 @@ td[colspan='3'] div {width:35%; border-radius:5px; position:relative; margin-bot
 $(document).ready(function() {
 	
 	//질문 상세 내용 숨기기
-	$("td[colspan='3']").hide()
+	$("td[colspan='5']").hide()
 	
 })
 
@@ -99,7 +101,7 @@ function getContent(rnum, comNo) {
 
 					/* 답변 내용 추가 */
 					var ansHtml = ""
-					ansHtml += ("<span><i class='fas fa-certificate'></i>" + caDate + "</span><br><br>")
+					ansHtml += ("<span>" + caDate + " 답변 완료</span><br><br>")
 					ansHtml += ("<span>" + res.answer.caContent + "</span>")
 					
 					$( "#td" + rnum + " .divComAnswer").html(ansHtml)

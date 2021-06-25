@@ -211,14 +211,13 @@
 		        SELECT 
 		        	C.com_no, C.com_content, C.com_date
 		        	, PJ.p_name, PJ.p_progress_state
+		        	, I.i_category
 		        FROM (
 		        	community C
 			        INNER JOIN project PJ
 			            ON C.p_no = PJ.p_no
-			        <if test="paging.category != null and !''.equals(paging.category)">
 			        INNER JOIN information I
 			        	ON C.p_no = I.p_no
-			        </if>
 			    )
 		        WHERE C.m_no = #{mNo}
 		        	<if test="paging.category != null and !''.equals(paging.category)">
