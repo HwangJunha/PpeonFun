@@ -10,6 +10,9 @@
 
 /* 카테고리 */
 .selectMyFund {text-align-last:center; font-size:15px; width:125px; height:30px; margin:0 45% 35px;}
+
+/* 차트 div */
+#donut_chart, #column_chart {display:inline-block;width:500px;margin:0 60px;}
 </style>
 
 <div class="container">
@@ -26,8 +29,8 @@
 	</select>
 	
 	<div id="chartTarget">
-		<div id="column_chart" class="pull-right">ColumnChart</div>
 		<div id="donut_chart">DonutChart</div>
+		<div id="column_chart">ColumnChart</div>
 	</div>
 
 </div><!-- div.container -->
@@ -50,7 +53,7 @@ function drawChartDonut() {
 	]);
 
 	var options = { 'title': '결제 내역 비율'
-				   	, 'width': 400
+				   	, 'width': 500
 	               	, 'height': 400
 	               	, 'pieHole': 0.2
 	               	, 'pieSliceText' : 'none'
@@ -79,7 +82,7 @@ function drawChartColumn() {
 
 
 	var options = { 'title': '결제 내역'
-	               	, 'width': 400
+	               	, 'width': 500
 	               	, 'height': 400
 	               	, 'fontSize': 16
 	               	, 'legend' : {
