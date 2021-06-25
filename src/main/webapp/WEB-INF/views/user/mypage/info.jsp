@@ -33,7 +33,7 @@
         	</span>
         	<span class="change-nick">
         		<input type="text" class="form-control" style="display:inline-block; width:50%;" id="nickname" name="mNick" data-rule-required="true" placeholder="새 별명 입력" maxlength="15">
-				<span id="inputNickStatus" class="glyphicon form-control-feedback" style="top:38px; right:400px; "aria-hidden="true"></span>
+				<span id="inputNickStatus" class="glyphicon form-control-feedback" style="top:40px; right:520px; "aria-hidden="true"></span>
             	<button type="button" id="btnNickCheck" class="btn btn-default" style="padding-top:5px; margin-bottom:5px;" >닉네임 중복</button>
 				<br><span id="nickmsg" style="color:#a94442;"></span>
 			</span>
@@ -50,7 +50,7 @@
         	</span>
         	<span class="change-email">
         		<input type="email" class="form-control" style="display:inline-block; width:50%;" id="email" name="mEmail" data-rule-required="true" placeholder="새 이메일 입력" maxlength="40">
- 				<span id="inputEmailStatus" class="glyphicon form-control-feedback" style="top:40px; right:400px;" aria-hidden="true"></span>
+ 				<span id="inputEmailStatus" class="glyphicon form-control-feedback" style="top:40px; right:520px;" aria-hidden="true"></span>
         		<button type="button" id="btnEmailCheck" class="btn btn-default" style="padding-top:5px; margin-bottom:5px;">이메일 중복</button>
         		<button type="button" id="btnEmail" class="btn btn-default" style="padding-top:5px; margin-bottom:5px;" disabled>이메일 인증</button>
         		<br><span id="emailmsg" style="color:#a94442;"></span>
@@ -64,7 +64,7 @@
         <div class="col-lg-10">
         	<span class="email-auth">
 				<input type="text" id="emailAuth"  class="form-control onlyNumber" style="display:inline-block; width:50%;" name="emailAuth" data-rule-required="true" placeholder="인증번호" maxlength="6">
-				<span id="inputEmailAuthStatus" class="glyphicon form-control-feedback" style="right:585px;" aria-hidden="true"></span>
+				<span id="inputEmailAuthStatus" class="glyphicon form-control-feedback" style="right:770px;" aria-hidden="true"></span>
 				<button type="button" id="btnEmailAuth" class="btn btn-default" style="padding-top:5px; margin-bottom:5px;">인증하기</button>
 				<br><span id="emailAuthMsg" style="color:#a94442;"></span>
 			</span>
