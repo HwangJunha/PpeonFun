@@ -5,7 +5,7 @@
 <c:import url="/WEB-INF/views/layout/userHeader.jsp"/>
 <style type="text/css">
 /* 대화 상세 조회 */
-.divDetailMsg {border:2px solid black; float:right; width:48%; height:565px; overflow-x:hidden; overflow-y:auto;}
+.divDetailMsg {border:1px solid black; float:right; width:48%; height:530px; overflow-x:hidden; overflow-y:auto;}
 
 /* 대화 목록 */
 .divChatList {margin:20px 0; width:50%; height:105px;}
@@ -19,7 +19,7 @@
 
 /* 메시지 입력 */
 .divInputMsg {background-color:black; height:40px; width:48%; padding:6px 0; position:relative; right:-52%;}
-.divInputMsg button {margin:0 12px;  background:black; color:#4EE2EC; border:none; border-radius:3px;}
+.divInputMsg button {margin:0 20px;  background:black; color:#4EE2EC; border:none; border-radius:3px;}
 .divInputMsg button:hover {border:1px solid white;}
 .divInputMsg input {width: 76%; border:1px solid black; border-radius:3px; margin-left:10%;}
 
@@ -103,9 +103,10 @@
 	
 		<!-- 메시지 입력창 -->
 		<div class="divInputMsg"
-			<c:if test="${fn:length(chatList) eq 1}">style="top:439px"</c:if>
-			<c:if test="${fn:length(chatList) eq 2}">style="top:293px"</c:if>
-			<c:if test="${fn:length(chatList) eq 3}">style="top:147px"</c:if>
+			<c:if test="${fn:length(chatList) eq 1}">style="top:406px"</c:if>
+			<c:if test="${fn:length(chatList) eq 2}">style="top:258px"</c:if>
+			<c:if test="${fn:length(chatList) eq 3}">style="top:114px"</c:if>
+			<c:if test="${fn:length(chatList) eq 4}">style="top:-33px"</c:if>
 		>
 			<!-- <button type="button" id="btnAttachFile" style="display:none;"><span class="glyphicon glyphicon-picture"></span></button> -->
 			<input type="file" id="inputMsgFile" accept="image/*" style="display:none;" />
