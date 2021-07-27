@@ -25,7 +25,7 @@
 + DBMS ORACLE 11g
 + IDE Eclipse 2020-12
 + Browser Support Chrome
-+ Framework Spring 5.3
++ Framework Spring 5.3 Mybatis 3.5
 + Design bootstrap-3.3
 + Language java-1.8.0-openjdk
 
