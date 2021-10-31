@@ -4,6 +4,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/layout/userHeader.jsp"/>
+<script type="text/javascript">
+$(document).ready(function() {
+	console.log($(".row").children().children('div').eq(0));
+
+})
+</script>
+
+
 <style type="text/css">
 .box {
 	display:inline-block;
